@@ -3,8 +3,9 @@
   <div class="navbar-spacer"></div>
   <ul class="nav navbar-nav" *ngIf="user">
     <li class="nav-item dropdown">
-      <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button"><img
-        src="assets/images/profile.png" alt="Avatar" class="rounded-circle" width="40"></a>
+      <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+        <span>{{user.email}}</span>
+      </a>
       <div class="dropdown-menu dropdown-menu-right">
         <a class="dropdown-item" (click)="logout()">
           <i class="material-icons">lock</i> Logout

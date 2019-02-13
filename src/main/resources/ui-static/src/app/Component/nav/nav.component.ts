@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../Services/auth.service";
 import {UserService} from "../../Services/user.service";
 import {User} from "../../Domain/user";
-import {tap} from "rxjs/internal/operators";
+import {mergeMap, tap} from "rxjs/internal/operators";
 
 @Component({
   selector: 't-nav',
@@ -24,6 +24,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this._userService.logout().pipe(tap(it => this._authService.setAuth(null, 'false'))).subscribe()
+    this._userService.logout().pipe(tap(it => this._authService.setAuth(null, 'false')), mergeMap(it => this._userService.currentUser())).subscribe()
   }
 }

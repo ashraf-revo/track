@@ -18,7 +18,6 @@ import reactor.core.publisher.Mono;
 import static org.revo.track.Domain.Role.ADMIN;
 import static org.revo.track.Domain.Role.Paths.ADMIN_PATH;
 import static org.revo.track.Domain.Role.Paths.USER_PATH;
-import static org.revo.track.Domain.Role.USER;
 
 @EnableWebFluxSecurity
 public class Security {
@@ -26,18 +25,20 @@ public class Security {
     public SecurityWebFilterChain webFilterChain(ServerHttpSecurity http) {
         http
                 .exceptionHandling()
+
                 .authenticationEntryPoint((exchange, e) -> {
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getAttributeOrDefault(CsrfToken.class.getName(), Mono.empty()).flatMap(it -> exchange.getResponse().setComplete());
                 })
                 .and()
                 .authorizeExchange()
-                .pathMatchers(USER_PATH, USER_PATH + "/*/**").hasRole(USER.getRole())
-                .pathMatchers(ADMIN_PATH, ADMIN_PATH + "/*/**").hasRole(ADMIN.getRole())
                 .pathMatchers("/auth/user").authenticated()
+                .pathMatchers(ADMIN_PATH, ADMIN_PATH + "/*/**").hasRole(ADMIN.getRole())
+                .pathMatchers(USER_PATH, USER_PATH + "/*/**").permitAll()
                 .anyExchange().permitAll()
                 .and().csrf()
                 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
+
                 .and().formLogin()
                 .loginPage("/login")
                 .authenticationFailureHandler((exchange, e) -> {
