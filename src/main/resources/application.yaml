@@ -4,7 +4,6 @@ spring:
   data:
     mongodb:
       database: ${spring.application.name}
-      uri: ${cloud.services.TRACK_MONGODB.connection.uri}
 management:
   endpoints:
     web:

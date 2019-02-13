@@ -6,9 +6,10 @@
     <agm-map *ngIf="locations.length>0" [latitude]="locations[0].lat" [longitude]="locations[0].lng" [zoom]="zoom">
       <agm-marker *ngFor="let  location of locations; let i = index" [latitude]="location.lat"
                   [longitude]="location.lng"
-                  [label]="'\'+i+\''">
+                  [label]="'\''+i+'\''">
         <agm-info-window>
           <strong>{{location.lat}}:{{location.lng}}</strong>
+          <strong>{{location.date}}</strong>
         </agm-info-window>
       </agm-marker>
       <agm-polyline>
@@ -22,38 +23,19 @@
       <div class="card-header bg-white">
         <div class="media">
           <div class="media-body">
-            <h4 class="card-title">Forum Activity</h4>
-            <p class="card-subtitle">Latest forum topics &amp; comments</p>
-          </div>
-          <div class="media-right">
-            <a class="btn btn-sm btn-primary" href="student-forum.html"> <i
-              class="material-icons">keyboard_arrow_right</i></a>
+            <h4 class="card-title">Calls</h4>
           </div>
         </div>
       </div>
       <ul class="list-group list-group-fit">
-        <li class="list-group-item forum-thread">
+        <li *ngFor="let call of calls" class="list-group-item forum-thread">
           <div class="media align-items-center">
-            <div class="media-left">
-              <div class="forum-icon-wrapper" id="forum-item-1">
-                <a href="student-forum-thread.html" class="forum-thread-icon">
-                  <i class="material-icons">description</i>
-                </a>
-                <a href="#public-profile" class="forum-thread-user">
-                  <img src="assets/images/people/50/guy-7.jpg" alt="" width="20"
-                       class="rounded-circle">
-                </a>
-              </div>
-              <span class="mdk-tooltip js-mdk-tooltip" data-for="forum-item-1">
-                replied by Brian S.
-              </span>
-            </div>
             <div class="media-body">
-              <a href="student-forum-thread.html">Am I learning the right way?</a>
+              <span>{{call.other}}</span>
             </div>
             <div class="media-right">
               <div style="width:80px; text-align: right;">
-                <small class="text-muted-light">5 min ago</small>
+                <small class="text-muted-light"> {{call.date | amTimeAgo}}</small>
               </div>
             </div>
           </div>
