@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TrackerServiceGenerator {
-    private static final String BASE_URL = "http://localhost:8080/";
+    private static final String BASE_URL = "http://astrack.cfapps.io/";
     private static final Gson gson = new GsonBuilder()
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
             .create();

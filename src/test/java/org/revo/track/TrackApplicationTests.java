@@ -1,8 +1,8 @@
 package org.revo.track;
 
 import org.junit.Test;
-import org.revo.track.Domain.Call;
-import org.revo.track.Domain.Direction;
+import org.revo.track.Domain.Location;
+import org.revo.track.Domain.Tracker;
 import org.revo.track.Domain.User;
 import retrofit2.Response;
 
@@ -19,9 +19,14 @@ public class TrackApplicationTests {
     public void contextLoads() {
         try {
             Response<User> userResponse = service.getCurrentUser().execute();
-//            Response<Tracker> trackerResponse = service.save(new Tracker()).execute();
-//            Response<Location> locationResponse = service.save(new Location(null, "5c63145cf8b0a3519928c005", new Date(), 29.9661564, 31.2766769)).execute();
-            Response<Call> callResponse = service.save(new Call(null, "5c63145cf8b0a3519928c005", new Date(), Direction.in, "01120266849")).execute();
+            Response<Tracker> trackerResponse = service.save(new Tracker()).execute();
+            service.save(new Location(null, trackerResponse.body().getId(), new Date(), 29.9799115,31.2874916)).execute();
+            service.save(new Location(null, trackerResponse.body().getId(), new Date(), 29.984930, 31.283372)).execute();
+            service.save(new Location(null, trackerResponse.body().getId(), new Date(), 29.9901726,31.2698489)).execute();
+            service.save(new Location(null, trackerResponse.body().getId(), new Date(), 29.9954061,31.2518983)).execute();
+
+
+//            Response<Call> callResponse = service.save(new Call(null, "5c63145cf8b0a3519928c005", new Date(), Direction.in, "01120266849")).execute();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

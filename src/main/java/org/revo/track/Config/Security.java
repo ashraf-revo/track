@@ -2,7 +2,6 @@ package org.revo.track.Config;
 
 import org.revo.track.Service.UserService;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.AuditorAware;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
@@ -38,7 +37,6 @@ public class Security {
                 .anyExchange().permitAll()
                 .and().csrf()
                 .csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse())
-
                 .and().formLogin()
                 .loginPage("/login")
                 .authenticationFailureHandler((exchange, e) -> {
@@ -67,10 +65,5 @@ public class Security {
     @Bean
     public PasswordEncoder encoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    @Bean
-    public AuditorAware<String> aware(UserService userService) {
-        return userService::currentUser;
     }
 }

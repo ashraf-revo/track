@@ -8,9 +8,9 @@
                   [longitude]="location.lng"
                   [label]="'\''+i+'\''">
         <agm-info-window>
-          <strong>{{location.lat}}:{{location.lng}}</strong>
+          <strong>{{location.lat}},{{location.lng}},{{zoom}}</strong>
           <br/>
-          <strong>{{location.date}}</strong>
+          <strong>{{location.date| amTimeAgo}}</strong>
         </agm-info-window>
       </agm-marker>
       <agm-polyline>
