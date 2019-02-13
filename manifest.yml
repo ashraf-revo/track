@@ -4,7 +4,7 @@ applications:
   memory: 1GB
   instances: 1
   routes:
-  - route: track.cfapps.io
+  - route: astrack.cfapps.io
   buildpack: java_buildpack
   path: target/track-0.0.1-SNAPSHOT.jar
   services:
