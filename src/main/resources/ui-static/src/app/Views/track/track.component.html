@@ -1,0 +1,64 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a [routerLink]="['/','home']">Home</a></li>
+</ol>
+<div class="row">
+  <div class="col-lg-7">
+    <agm-map *ngIf="locations.length>0" [latitude]="locations[0].lat" [longitude]="locations[0].lng" [zoom]="zoom">
+      <agm-marker *ngFor="let  location of locations; let i = index" [latitude]="location.lat"
+                  [longitude]="location.lng"
+                  [label]="'\'+i+\''">
+        <agm-info-window>
+          <strong>{{location.lat}}:{{location.lng}}</strong>
+        </agm-info-window>
+      </agm-marker>
+      <agm-polyline>
+        <agm-polyline-point *ngFor="let  location of locations" [latitude]="location.lat" [longitude]="location.lng">
+        </agm-polyline-point>
+      </agm-polyline>
+    </agm-map>
+  </div>
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-header bg-white">
+        <div class="media">
+          <div class="media-body">
+            <h4 class="card-title">Forum Activity</h4>
+            <p class="card-subtitle">Latest forum topics &amp; comments</p>
+          </div>
+          <div class="media-right">
+            <a class="btn btn-sm btn-primary" href="student-forum.html"> <i
+              class="material-icons">keyboard_arrow_right</i></a>
+          </div>
+        </div>
+      </div>
+      <ul class="list-group list-group-fit">
+        <li class="list-group-item forum-thread">
+          <div class="media align-items-center">
+            <div class="media-left">
+              <div class="forum-icon-wrapper" id="forum-item-1">
+                <a href="student-forum-thread.html" class="forum-thread-icon">
+                  <i class="material-icons">description</i>
+                </a>
+                <a href="#public-profile" class="forum-thread-user">
+                  <img src="assets/images/people/50/guy-7.jpg" alt="" width="20"
+                       class="rounded-circle">
+                </a>
+              </div>
+              <span class="mdk-tooltip js-mdk-tooltip" data-for="forum-item-1">
+                replied by Brian S.
+              </span>
+            </div>
+            <div class="media-body">
+              <a href="student-forum-thread.html">Am I learning the right way?</a>
+            </div>
+            <div class="media-right">
+              <div style="width:80px; text-align: right;">
+                <small class="text-muted-light">5 min ago</small>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
