@@ -1,6 +1,9 @@
 spring:
   application:
     name: track
+  data:
+    mongodb:
+      uri: ${vcap.services.TRACK_MONGODB.credentials.uri}
 management:
   endpoints:
     web:
