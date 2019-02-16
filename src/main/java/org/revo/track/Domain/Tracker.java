@@ -18,5 +18,7 @@ public class Tracker {
     @Id
     private String id;
     private String account[];
-    private Date lastUpdate = new Date();
+    private Date createdDate;
+    private Date lastUpdateCall;
+    private Date lastUpdateLocation;
 }
