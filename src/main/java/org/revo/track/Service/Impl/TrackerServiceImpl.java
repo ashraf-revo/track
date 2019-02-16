@@ -44,11 +44,11 @@ public class TrackerServiceImpl implements TrackerService {
 
         if (lastUpdateCall != null) {
             update.set("lastUpdateCall", lastUpdateCall);
-            where.and("lastUpdateCall").lt(lastUpdateCall);
+            where.and("lastUpdateCall").gte(lastUpdateCall);
         }
         if (lastUpdateLocation != null) {
             update.set("lastUpdateLocation", lastUpdateLocation);
-            where.and("lastUpdateLocation").lt(lastUpdateLocation);
+            where.and("lastUpdateLocation").gte(lastUpdateLocation);
         }
         return reactiveMongoOperations.updateFirst(new Query(where), update, Tracker.class);
     }
