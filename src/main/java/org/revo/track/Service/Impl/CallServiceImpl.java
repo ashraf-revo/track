@@ -35,6 +35,8 @@ public class CallServiceImpl implements CallService {
         return callRepository.saveAll(calls.getCalls().stream().filter(it -> it.getTrackerId() != null)
                 .sorted(Comparator.comparing(Call::getDate).reversed())
                 .collect(Collectors.toList())).collectList().map(Calls::new)
-                .flatMap(it -> trackerService.update(it.getCalls().get(0).getTrackerId(), it.getCalls().get(0).getDate(), null).flatMap(its -> Mono.just(it)));
+                .flatMap(it -> it.getCalls().size() == 0 ? Mono.just(it) : trackerService.update(it.getCalls().get(0).getTrackerId(), it.getCalls().get(0).getDate(), null)
+                        .flatMap(its -> Mono.just(it)));
+
     }
 }
