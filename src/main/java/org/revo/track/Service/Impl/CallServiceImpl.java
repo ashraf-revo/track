@@ -33,8 +33,8 @@ public class CallServiceImpl implements CallService {
     @Override
     public Mono<Calls> save(Calls calls) {
         return callRepository.saveAll(calls.getCalls().stream().filter(it -> it.getTrackerId() != null)
-                .sorted(Comparator.comparing(Call::getDate))
+                .sorted(Comparator.comparing(Call::getDate).reversed())
                 .collect(Collectors.toList())).collectList().map(Calls::new)
-                .flatMap(calls1 -> trackerService.update(calls1.getCalls().get(0).getTrackerId(), calls1.getCalls().get(0).getDate(), null).flatMap(it -> Mono.just(calls1)));
+                .flatMap(it -> trackerService.update(it.getCalls().get(0).getTrackerId(), it.getCalls().get(0).getDate(), null).flatMap(its -> Mono.just(it)));
     }
 }
