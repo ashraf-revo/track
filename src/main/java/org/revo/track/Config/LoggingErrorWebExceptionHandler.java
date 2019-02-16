@@ -1,7 +1,6 @@
 package org.revo.track.Config;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;
@@ -17,8 +16,6 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 @Order(-2)
 @Slf4j
 public class LoggingErrorWebExceptionHandler extends DefaultErrorWebExceptionHandler {
-
-
     public LoggingErrorWebExceptionHandler(ErrorAttributes errorAttributes, ResourceProperties resourceProperties,
                                            ServerProperties serverProperties, ApplicationContext applicationContext, ServerCodecConfigurer serverCodecConfigurer) {
         super(errorAttributes, resourceProperties, serverProperties.getError(), applicationContext);
