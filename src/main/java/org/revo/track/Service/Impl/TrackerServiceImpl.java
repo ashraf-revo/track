@@ -1,6 +1,7 @@
 package org.revo.track.Service.Impl;
 
 import com.mongodb.client.result.UpdateResult;
+import lombok.extern.slf4j.Slf4j;
 import org.revo.track.Domain.Tracker;
 import org.revo.track.Repository.TrackerRepository;
 import org.revo.track.Service.TrackerService;
@@ -16,6 +17,7 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 
 @Service
+@Slf4j
 public class TrackerServiceImpl implements TrackerService {
     @Autowired
     private TrackerRepository trackerRepository;
@@ -39,6 +41,8 @@ public class TrackerServiceImpl implements TrackerService {
 
     @Override
     public Mono<UpdateResult> update(String id, Date lastUpdateCall, Date lastUpdateLocation) {
+        log.info("org.revo.****", id + "      " + lastUpdateCall + "        " + lastUpdateLocation);
+
         Criteria where = Criteria.where("id").is(id);
         Update update = new Update();
 
@@ -50,6 +54,7 @@ public class TrackerServiceImpl implements TrackerService {
             update.set("lastUpdateLocation", lastUpdateLocation);
             where.and("lastUpdateLocation").gte(lastUpdateLocation);
         }
+        log.info("org.revo.****", new Query(where).toString());
         return reactiveMongoOperations.updateFirst(new Query(where), update, Tracker.class);
     }
 }
