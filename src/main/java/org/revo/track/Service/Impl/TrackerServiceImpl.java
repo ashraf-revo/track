@@ -41,20 +41,16 @@ public class TrackerServiceImpl implements TrackerService {
 
     @Override
     public Mono<UpdateResult> update(String id, Date lastUpdateCall, Date lastUpdateLocation) {
-        log.info("org.revo.****" + id + "      " + lastUpdateCall + "        " + lastUpdateLocation);
-
         Criteria criteria = Criteria.where("id").is(id);
         Update update = new Update();
-
         if (lastUpdateCall != null) {
             update.set("lastUpdateCall", lastUpdateCall);
-            criteria.orOperator(Criteria.where("lastUpdateCall").gte(lastUpdateCall), Criteria.where("lastUpdateCall").exists(false));
+            criteria.orOperator(Criteria.where("lastUpdateCall").lte(lastUpdateCall), Criteria.where("lastUpdateCall").exists(false));
         }
         if (lastUpdateLocation != null) {
             update.set("lastUpdateLocation", lastUpdateLocation);
-            criteria.orOperator(Criteria.where("lastUpdateLocation").gte(lastUpdateLocation), Criteria.where("lastUpdateLocation").exists(false));
+            criteria.orOperator(Criteria.where("lastUpdateLocation").lte(lastUpdateLocation), Criteria.where("lastUpdateLocation").exists(false));
         }
-        log.info("org.revo.****" + new Query(criteria).toString());
         return reactiveMongoOperations.updateFirst(new Query(criteria), update, Tracker.class);
     }
 }
