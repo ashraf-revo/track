@@ -18,7 +18,8 @@ public class Call {
     @Id
     private String id;
     private String trackerId;
-    private Date date;
-    private Direction direction;
-    private String other;
+    private Date date=new Date();
+    private CallType callType;
+    private String number;
+    private int duration;
 }

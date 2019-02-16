@@ -18,7 +18,7 @@ public class Location {
     @Id
     private String id;
     private String trackerId;
-    private Date date;
+    private Date date=new Date();
     private Double lat;
     private Double lng;
 }

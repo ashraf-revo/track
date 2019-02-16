@@ -22,4 +22,9 @@ public class TrackerServiceImpl implements TrackerService {
     public Mono<Tracker> save(Tracker tracker) {
         return trackerRepository.save(tracker);
     }
+
+    @Override
+    public Mono<Tracker> findOne(String id) {
+        return trackerRepository.findById(id);
+    }
 }

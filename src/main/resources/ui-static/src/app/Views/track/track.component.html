@@ -32,11 +32,14 @@
         <li *ngFor="let call of calls" class="list-group-item forum-thread">
           <div class="media align-items-center">
             <div class="media-body">
-              <span>{{call.other}}</span>
+              <span>{{call.number}}</span>
             </div>
             <div class="media-right">
               <div style="width:80px; text-align: right;">
+                <small class="text-muted-light"> {{call.callType}}</small>
                 <small class="text-muted-light"> {{call.date | amTimeAgo}}</small>
+                <small class="text-muted-light"> takes</small>
+                <small class="text-muted-light"> {{call.duration}}</small>
               </div>
             </div>
           </div>

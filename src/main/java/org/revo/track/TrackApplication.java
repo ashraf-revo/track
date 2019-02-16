@@ -53,6 +53,7 @@ public class TrackApplication {
                         .andRoute(GET(ADMIN_PATH + "/tracker"), req -> ok().body(trackerService.findAll(), Tracker.class))
                         .andRoute(POST(USER_PATH + "/location"), req -> ok().body(req.bodyToMono(Location.class).flatMap(locationService::save), Location.class))
                         .andRoute(POST(USER_PATH + "/call"), req -> ok().body(req.bodyToMono(Call.class).flatMap(callService::save), Call.class))
+                        .andRoute(GET(USER_PATH + "/tracker/{id}"), req -> ok().body(trackerService.findOne(req.pathVariable("id")), Tracker.class))
                         .andRoute(POST(USER_PATH + "/tracker"), req -> ok().body(req.bodyToMono(Tracker.class).flatMap(trackerService::save), Tracker.class))
                         .andRoute(base, request -> ok().contentType(MediaType.TEXT_HTML).syncBody(indexHtml))
                         .andRoute(GET("/auth/user"), req -> ok().body(getContext().map(SecurityContext::getAuthentication).filter(Objects::nonNull).map(Authentication::getPrincipal).cast(User.class), User.class));

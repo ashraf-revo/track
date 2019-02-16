@@ -8,7 +8,7 @@
         <li class="list-group-item" *ngFor="let tracker of trackers">
           <div class="media align-items-center">
             <div class="media-body">
-              <a [routerLink]="['/','track',tracker.id]">{{tracker.id}}</a>
+              <a [routerLink]="['/','track',tracker.id]">{{tracker.account[0]}} last update{{tracker.lastUpdate}}</a>
             </div>
           </div>
         </li>

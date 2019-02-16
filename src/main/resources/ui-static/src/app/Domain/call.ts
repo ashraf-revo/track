@@ -1,7 +1,8 @@
 export class Call {
   id: string;
   trackerId: string;
-  date: string;
-  direction: string;
-  other: string;
+  date: Date;
+  callType: string;
+  number: string;
+  duration: number;
 }

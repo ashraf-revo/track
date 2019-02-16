@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
+
 @Document
 @Getter
 @Setter
@@ -15,4 +17,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Tracker {
     @Id
     private String id;
+    private String account[];
+    private Date lastUpdate = new Date();
 }
