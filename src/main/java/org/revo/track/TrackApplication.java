@@ -1,10 +1,7 @@
 package org.revo.track;
 
 import org.revo.track.Config.Env;
-import org.revo.track.Domain.Call;
-import org.revo.track.Domain.Location;
-import org.revo.track.Domain.Tracker;
-import org.revo.track.Domain.User;
+import org.revo.track.Domain.*;
 import org.revo.track.Service.CallService;
 import org.revo.track.Service.LocationService;
 import org.revo.track.Service.TrackerService;
@@ -52,7 +49,9 @@ public class TrackApplication {
                         .andRoute(GET(ADMIN_PATH + "/call/{id}"), req -> ok().body(callService.findAll(req.pathVariable("id")), Call.class))
                         .andRoute(GET(ADMIN_PATH + "/tracker"), req -> ok().body(trackerService.findAll(), Tracker.class))
                         .andRoute(POST(USER_PATH + "/location"), req -> ok().body(req.bodyToMono(Location.class).flatMap(locationService::save), Location.class))
+                        .andRoute(POST(USER_PATH + "/locations"), req -> ok().body(req.bodyToMono(Locations.class).flatMap(locationService::save), Locations.class))
                         .andRoute(POST(USER_PATH + "/call"), req -> ok().body(req.bodyToMono(Call.class).flatMap(callService::save), Call.class))
+                        .andRoute(POST(USER_PATH + "/calls"), req -> ok().body(req.bodyToMono(Calls.class).flatMap(callService::save), Calls.class))
                         .andRoute(GET(USER_PATH + "/tracker/{id}"), req -> ok().body(trackerService.findOne(req.pathVariable("id")), Tracker.class))
                         .andRoute(POST(USER_PATH + "/tracker"), req -> ok().body(req.bodyToMono(Tracker.class).flatMap(trackerService::save), Tracker.class))
                         .andRoute(base, request -> ok().contentType(MediaType.TEXT_HTML).syncBody(indexHtml))
