@@ -4,6 +4,9 @@ spring:
   data:
     mongodb:
       uri: ${vcap.services.TRACK_MONGODB.credentials.uri}
+server:
+  error:
+    include-stacktrace: always
 management:
   endpoints:
     web:
