@@ -6,6 +6,7 @@ import org.revo.track.Repository.CallRepository;
 import org.revo.track.Service.CallService;
 import org.revo.track.Service.TrackerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -22,7 +23,7 @@ public class CallServiceImpl implements CallService {
 
     @Override
     public Flux<Call> findAll(String id) {
-        return callRepository.findByTrackerId(id);
+        return callRepository.findByTrackerId(id, PageRequest.of(0, 100));
     }
 
     @Override
