@@ -6,5 +6,5 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import reactor.core.publisher.Flux;
 
 public interface CallRepository extends ReactiveCrudRepository<Call, String> {
-    Flux<Call> findByTrackerId(String id, Pageable pageable);
+    Flux<Call> findByTrackerIdOrderByDateDesc(String id, Pageable pageable);
 }

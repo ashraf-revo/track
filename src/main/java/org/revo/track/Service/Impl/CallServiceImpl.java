@@ -23,7 +23,7 @@ public class CallServiceImpl implements CallService {
 
     @Override
     public Flux<Call> findAll(String id) {
-        return callRepository.findByTrackerId(id, PageRequest.of(0, 100));
+        return callRepository.findByTrackerIdOrderByDateDesc(id, PageRequest.of(0, 100));
     }
 
     @Override
