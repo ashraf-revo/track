@@ -24,7 +24,7 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Mono<Location> save(Location location) {
         return locationRepository.findTopByOrderByDateDesc().defaultIfEmpty(new Location())
-                .filter(it -> it.getLat() == null || it.getLng() == null || it.getLat() != location.getLat() || it.getLng() != location.getLng())
+                .filter(it -> it.getLat() == null || it.getLng() == null || (it.getLat() != null && !it.getLat().equals(location.getLat())) || (it.getLng() != null && !it.getLng().equals(location.getLng())))
                 .flatMap(it -> locationRepository.save(location));
     }
 
