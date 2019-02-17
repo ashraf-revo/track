@@ -14,6 +14,7 @@ export class TrackComponent implements OnInit {
   public zoom = 15;
   public locations: Location[] = [];
   public calls: Call[] = [];
+  public display: Location;
 
   constructor(private _activatedRoute: ActivatedRoute,
               private _trackerService: TrackerService) {
@@ -24,6 +25,7 @@ export class TrackComponent implements OnInit {
     this._activatedRoute.params.pipe(map((it: Params) => it['id']), mergeMap(it => this._trackerService.locations(it)))
       .subscribe(it => {
         this.locations = it;
+        if (this.locations.length > 0) this.display = this.locations[0];
       });
     this._activatedRoute.params.pipe(map((it: Params) => it['id']), mergeMap(it => this._trackerService.calls(it)))
       .subscribe(it => {
