@@ -5,6 +5,7 @@ import org.revo.track.Domain.Locations;
 import org.revo.track.Repository.LocationRepository;
 import org.revo.track.Service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,7 +19,7 @@ public class LocationServiceImpl implements LocationService {
 
     @Override
     public Flux<Location> findAll(String id) {
-        return locationRepository.findByTrackerId(id);
+        return locationRepository.findByTrackerIdOrderByDateDesc(id, PageRequest.of(0, 100));
     }
 
     @Override
