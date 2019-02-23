@@ -4,8 +4,7 @@
 <div class="row">
   <div class="col-lg-7">
     <agm-map *ngIf="locations.length>0" [latitude]="locations[0].lat" [longitude]="locations[0].lng" [zoom]="zoom">
-      <agm-marker [latitude]="display.lat"
-                  [longitude]="display.lng">
+      <agm-marker [latitude]="display.lat" [longitude]="display.lng">
         <agm-info-window>
           <strong>{{display.lat}},{{display.lng}},{{zoom}}</strong>
           <br/>
@@ -31,7 +30,7 @@
                 <small class="text-muted-light"> {{call.callType}}</small>
               </div>
               <span>{{call.number}}</span>
-              <div style="width:80px; text-align: right;">
+              <div style="text-align: right;">
                 <small class="text-muted-light"> {{call.date }}</small>
                 <br/>
                 <small class="text-muted-light"> takes</small>
