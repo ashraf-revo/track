@@ -10,7 +10,7 @@
             <div class="media-body">
               <a [routerLink]="['/','track',tracker.id]">
                 <span *ngIf="trackers.length>0">{{tracker.account[0]}}</span>
-                <span *ngIf="trackers.length==0">{{tracker.id}}</span>
+                <span *ngIf="trackers.length===0">{{tracker.id}}</span>
               </a>
             </div>
           </div>
