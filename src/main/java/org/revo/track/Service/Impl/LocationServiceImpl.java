@@ -4,6 +4,7 @@ import org.revo.track.Domain.Location;
 import org.revo.track.Domain.Locations;
 import org.revo.track.Repository.LocationRepository;
 import org.revo.track.Service.LocationService;
+import org.revo.track.Util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class LocationServiceImpl implements LocationService {
     @Override
     public Mono<Location> save(Location location) {
         return locationRepository.findTopByOrderByDateDesc().defaultIfEmpty(new Location())
-                .filter(it -> it.getLat() == null || it.getLng() == null || (it.getLat() != null && !it.getLat().equals(location.getLat())) || (it.getLng() != null && !it.getLng().equals(location.getLng())))
+                .filter(it -> it.getLat() == null || it.getLng() == null || (it.getLat() != null && !it.getLat().equals(location.getLat())) || (it.getLng() != null && !it.getLng().equals(location.getLng())) || (it.getLat() != null && it.getLng() != null && Util.getDistanceFromLatLonInKm(it.getLat(), it.getLng(), location.getLat(), location.getLng()) * 1000 > 20))
                 .flatMap(it -> locationRepository.save(location)).defaultIfEmpty(new Location());
     }
 

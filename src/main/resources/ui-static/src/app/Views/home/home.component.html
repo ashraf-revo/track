@@ -9,8 +9,8 @@
           <div class="media align-items-center">
             <div class="media-body">
               <a [routerLink]="['/','track',tracker.id]">
-                <span ng-if="tracker.length>0">{{tracker.account[0]}}</span>
-                <span ng-if="tracker.length==0">{{tracker.id}}</span>
+                <span ng-if="trackers.length>0">{{tracker.account[0]}}</span>
+                <span ng-if="trackers.length==0">{{tracker.id}}</span>
               </a>
             </div>
           </div>
