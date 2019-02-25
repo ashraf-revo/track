@@ -6,7 +6,7 @@
     <agm-map *ngIf="locations.length>0" [latitude]="locations[0].lat" [longitude]="locations[0].lng" [zoom]="zoom">
       <agm-marker [latitude]="display.lat" [longitude]="display.lng">
         <agm-info-window>
-          <a href="maps.google.com/maps?daddr={{display.lat}},{{display.lng}}">
+          <a href="https://maps.google.com/maps?daddr={{display.lat}},{{display.lng}}">
             <strong>{{display.lat}},{{display.lng}}</strong>
           </a>
         </agm-info-window>
