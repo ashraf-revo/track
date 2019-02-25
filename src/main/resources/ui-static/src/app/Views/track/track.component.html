@@ -6,9 +6,9 @@
     <agm-map *ngIf="locations.length>0" [latitude]="locations[0].lat" [longitude]="locations[0].lng" [zoom]="zoom">
       <agm-marker [latitude]="display.lat" [longitude]="display.lng">
         <agm-info-window>
-          <strong>{{display.lat}},{{display.lng}},{{zoom}}</strong>
-          <br/>
-          <strong>{{display.date}}</strong>
+          <a href="maps.google.com/maps?daddr={{display.lat}},{{display.lng}}">
+            <strong>{{display.lat}},{{display.lng}}</strong>
+          </a>
         </agm-info-window>
       </agm-marker>
     </agm-map>
