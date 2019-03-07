@@ -21,10 +21,7 @@ public class Tracker {
     private Date createdDate;
     private Date lastUpdateCall;
     private Date lastUpdateLocation;
-
-    public Tracker() {
-    }
-
+    
     public Tracker(String id) {
         this.id = id;
     }

@@ -22,11 +22,3 @@ logging:
   file: /tmp/${spring.application.name}.log
   level:
     org.springframework: debug
-org:
-  revo:
-    env:
-      users:
-      - email: revo
-        username: revo
-        type: '100'
-        password: '{bcrypt}$2a$10$55ftqk9N02sq/qFv57HAZO/JgynR2Mg75u05pkMceVAQbvTMXsUI2'
