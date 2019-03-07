@@ -60,7 +60,7 @@ public class Security {
 
     @Bean
     public ReactiveUserDetailsService userDetailsService(UserService userService) {
-        return s -> userService.count().filter(it -> it == 0).flatMap(it -> userService.save(new User(s, s, s)))
+        return s -> userService.count().filter(it -> it == 0).flatMap(it -> userService.save(new User(s, s, s,"111")))
                 .defaultIfEmpty(new User()).flatMap(it -> userService.findByUsername(s).cast(UserDetails.class));
     }
 

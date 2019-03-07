@@ -11,10 +11,11 @@ public class User extends BaseUser {
     public User() {
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password,String type) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.setType(type);
     }
 
     @Override
