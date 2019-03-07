@@ -36,7 +36,7 @@ public class TrackerServiceImpl implements TrackerService {
 
     @Override
     public Mono<Tracker> findOne(String id) {
-        return trackerRepository.findById(id);
+        return trackerRepository.findById(id).switchIfEmpty(save(new Tracker(id)));
     }
 
     @Override

@@ -10,6 +10,8 @@ public interface UserService {
 
     Mono<Long> count();
 
+    Mono<User> save(User user);
+
     Flux<User> save(List<User> users);
 
     Flux<User> findAll();

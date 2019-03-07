@@ -1,5 +1,6 @@
 package org.revo.track.Config;
 
+import org.revo.track.Domain.User;
 import org.revo.track.Service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -59,7 +60,8 @@ public class Security {
 
     @Bean
     public ReactiveUserDetailsService userDetailsService(UserService userService) {
-        return s -> userService.findByUsername(s).cast(UserDetails.class);
+        return s -> userService.count().filter(it -> it == 0).flatMap(it -> userService.save(new User(s, s, s)))
+                .defaultIfEmpty(new User()).flatMap(it -> userService.findByUsername(s).cast(UserDetails.class));
     }
 
     @Bean
